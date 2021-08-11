@@ -94,10 +94,11 @@ func NewClient(serverURL string, authToken string) Client {
 	return NewClientWithOptions(serverURL, authToken, DefaultOptions())
 }
 
-
-func NewClientWithDoer(d http.Doer, authToken string, options *Options) Client {
-	options.httpOptions.SetHTTPDoer(d)
-	return NewClientWithOptions("", authToken, options)
+// NewClientWithDoer creates a Client for connecting to the InfluxDB server using the provided Doer interface.
+// authToken is an authentication token. It can be empty in case of connecting to newly installed InfluxDB server, which has not been set up yet.
+func NewClientWithDoer(doer http.Doer, serverURL, authToken string, options *Options) Client {
+	options.httpOptions.SetHTTPDoer(doer)
+	return NewClientWithOptions(serverURL, authToken, options)
 }
 
 // NewClientWithOptions creates Client for connecting to given serverURL with provided authentication token
