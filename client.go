@@ -94,6 +94,12 @@ func NewClient(serverURL string, authToken string) Client {
 	return NewClientWithOptions(serverURL, authToken, DefaultOptions())
 }
 
+
+func NewClientWithDoer(d http.Doer, authToken string, options *Options) Client {
+	options.httpOptions.SetHTTPDoer(d)
+	return NewClientWithOptions("", authToken, options)
+}
+
 // NewClientWithOptions creates Client for connecting to given serverURL with provided authentication token
 // and configured with custom Options.
 // serverURL is the InfluxDB server base URL, e.g. http://localhost:8086,

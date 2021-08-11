@@ -139,6 +139,10 @@ func (o *Options) HTTPClient() *nethttp.Client {
 	return o.httpOptions.HTTPClient()
 }
 
+func (o *Options) SetHTTPDoer(d http.Doer) *Options {
+  o.httpOptions.SetHTTPDoer(d)
+}
+
 // SetHTTPClient will configure the http.Client that is used
 // for HTTP requests. If set to nil, an HTTPClient will be
 // generated.
